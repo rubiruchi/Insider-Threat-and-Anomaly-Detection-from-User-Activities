@@ -1,28 +1,28 @@
-## Unsupervised Learning of User Activities to Detect Intrusions and Insider Threats using Deep Learning
+# Unsupervised Learning of User Activities to Detect Intrusions and Insider Threats using Deep Learning
 Anomaly detection in network traffic and event logs using deep learning (w/ Pytorch)
 
 
-# Domain Background
+## Domain Background
 Cybersecurity monitoring is a domain in which is constantly evolving in response to hackers and pirates iterating on their methods to go un-detected. As such, many of the breaches are detected after-the-fact which causes tremendous damage in terms of data leaks, critical system outages, firm reputation etc. It is imperative that Intrusion Detection Systems (IDS) or any security monitoring system be able to detect any possible attacks, including vectors never seen. Thus, the need for detecting anomalous activity in addition to known signatures is essential for a state of the art security monitoring system.
 
-# Problem Statement
+## Problem Statement
 There has been many research in the past in anomaly detection using statistical methods(1), semi-supervised learning(2), neural networks(3), and RNNs(4) to some amount of success, but they do not fully address anomalous user behavioral patterns over time. While in a traditional sense, an anomaly detection can be used to detect spikes in network activities (and be able to detect DDOS attacks quite effectively), it is not effective in detecting a creative hacker who tries to mimic a “normal” user until they are able to breach through completely. Thus, a way of detecting and classifying “normal” and anomalous activity based on each user’s sequence of events (behaviors) is needed.
 
-# Dataset
+## Dataset
 Obtaining a comprehensive dataset in cybersecurity can be difficult relative to other fields due to the field’s nature of security, many datasets are either internal, and unable to be shared because of privacy issues. Also, as threat vectors continue to evolve, it is often difficult to obtain an up-to-date dataset in the security realm for use of machine learning. Thankfully, the Communications Security Establishment (CSE and the Canadian Institute of Cybersecurity (CIC) has devised a systematic way to generating a diverse and comprehensive benchmark dataset for intrusion detection. Thus, for this project, I will use this dataset available at the Registry of Open Data on AWS – A Realistic Cyber Defense Dataset (CSE-CIC-IDS-2018)5 to train and evaluate the effectiveness of my solution. This dataset contains simulated network traffic log files and packet capture (pcap) from 30 servers and 470 machines amounting to over 500GB of data (approx. 94 million rows from the logs and approx. 450GB of packet capture data) which include annotated seven different attack vectors including DDoS, Heartbleed, Brute-Force and infiltration of the network from inside. 
 From this dataset, it will be possible to train a model by establishing a baseline norm of user activities using benign traffic and evaluate the model with a mix of benign and malicious traffic. 
 
-# Solution Statement
+## Solution Statement
 In order to detect anomalous activity in the network, each user (or IP) will be tracked based on their sequence of activities. To establish a baseline of a “normal” behavior, it would be necessary to collect and learn what a normal sequence of events look like for a typical user in addition to their access statistics (i.e.. Duration of session, count of requests, etc.). Here, we will borrow ideas from NLP and evaluate the effectiveness of RNN-LSTM as suggested by Tuor et all(6). I will be following closely their methods on anomaly detection but will also be exploring newer methods in sequence-to-sequence predictions such as the transformer model(7) to train the models. 
 
-# Benchmark Model
+## Benchmark Model
 This project will be exploring the methods as described by Tuor et all6 for unsupervised anomaly detection of user behaviors using LSTM but using a newer dataset CSE-CIC-IDS-2018(5) for training and evaluation. The results from this project will be evaluated and compared with several naïve solutions including Isolation Forest and one-class SVM as the benchmark for anomaly detection and I will explore other algorithms such as the mentioned transformer model(7). 
 The models will be trained with benign (normal) activity and will be tested with a mix of benign activity and anomalous activity to evaluate the effectiveness of each model and will be compared to the benchmark model.
 
-# Evaluation Metrics
+## Evaluation Metrics
 As the proposed dataset for this project is labeled, it will be possible to use traditional evaluation metrics (accuracy, precision, recall) to quantify the performance of the benchmark model and the solution model(s). However, since the labeled dataset is skewed with mostly benign data points, I will be giving more emphasis on recall and precision values during evaluation.
 
-# Project Design
+## Project Design
 This project will largely consist of three parts:
 1.	Data exploration & feature extraction 
 2.	Model training & experimentation 
@@ -40,7 +40,7 @@ The algorithms will be trained with the pre-processed data which will be used to
 
 
 
-References
+## References
 1. Carter, K. M., and Streilein, W. W. 2012. Probabilistic reasoning for streaming anomaly detection. In Proc. SSP, 377–380. 
 2. Gavai, G.; Sricharan, K.; Gunning, D.; Hanley, J.; Singhal, M.; and Rolleston, R. 2015. Supervised and unsupervised methods to detect insider threat from en- terprise social and online activity data. Journal of Wireless Mobile Networks, Ubiquitous Computing, and Dependable Applications 6(4):47–63. 
 3. Ryan, J.; Lin, M.-J.; and Miikkulainen, R. 1998. Intrusion detection with neu- ral networks. Advances in neural information processing systems 943–949. 
