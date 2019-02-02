@@ -28,7 +28,7 @@ This project will largely consist of three parts:
 2.	Model training & experimentation 
 3.	Evaluation & detection
 
-
+![Alt text](/assets/anomaly-detection-dev-process.png?raw=true "Optional Title")
 Figure 1 Anomaly Detection Training and Testing Process
 
 First, the dataset needs to be understood properly to determine what features can be extracted. Essentially, the feature extraction step must extract information such as basic statistics like aggregate counts, session time etc. in addition to the sequence of events or activity of each user. This will allow for the detection algorithm to utilize both user behavioral patterns as well as statistical trends.
