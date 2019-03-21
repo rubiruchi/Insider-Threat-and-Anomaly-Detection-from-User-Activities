@@ -1,5 +1,21 @@
 import pandas as pd
 import numpy as np
+import glob
+import os
+
+# read csv, clean and optimize the dataframe and combine the dataframes into one
+def read_clean_combine_csv(directory, df, exclude=None):
+    excludepath = os.path.join(directory,exclude)
+    print(excludepath)
+    print()
+    for csv_file in glob.glob(os.path.join(directory,'*')):
+        if(excludepath != csv_file):
+            df1 = pd.read_csv(csv_file)
+            df1 = df1[df1['Protocol'] != 'Protocol']
+            df1 = optimize_and_clean_df(df1)
+            df = pd.concat([df,df1], ignore_index=True)
+    return df
+    
 
 def optimize_and_clean_df(df):
     # convert columns to correct data types
